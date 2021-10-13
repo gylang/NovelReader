@@ -20,7 +20,6 @@ import com.example.newbiechen.ireader.model.bean.HelpsDetailBean;
 import com.example.newbiechen.ireader.model.bean.HotCommentBean;
 import com.example.newbiechen.ireader.model.bean.ReviewDetailBean;
 import com.example.newbiechen.ireader.model.bean.SortBookBean;
-import com.example.newbiechen.ireader.model.bean.packages.ChapterInfoPackage;
 import com.example.newbiechen.ireader.model.bean.packages.SearchBookPackage;
 
 import java.util.ArrayList;
@@ -63,8 +62,8 @@ public class RemoteRepository {
                 .map(bean -> bean.getBooks());
     }
 
-    public Single<List<BookChapterBean>> getBookChapters(String bookId){
-        return mBookApi.getBookChapterPackage(bookId, "chapter")
+    public Single<List<BookChapterBean>> getBookChapters(String bookId, String title, String author){
+        return mBookApi.getBookChapterPackage(bookId, "chapter", title, author)
                 .map(bean -> {
                     if (bean.getMixToc() == null){
                         return new ArrayList<BookChapterBean>(1);

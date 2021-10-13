@@ -55,10 +55,12 @@ public interface BookApi {
      * 获取书籍的章节总列表
      * @param bookId
      * @param view 默认参数为:chapters
+     * @param title
+     * @param author
      * @return
      */
-    @GET("/mix-atoc/{bookId}")
-    Single<BookChapterPackage> getBookChapterPackage(@Path("bookId") String bookId, @Query("view") String view);
+    @GET("http://192.168.2.211:8888/novel/chapterByAuthorAndName")
+    Single<BookChapterPackage> getBookChapterPackage(@Query("bookId") String bookId, @Query("view") String view,@Query("name")String title,@Query("author")String author);
 
     /**
      * 章节的内容
@@ -66,8 +68,8 @@ public interface BookApi {
      * @param url
      * @return
      */
-    @GET("http://chapter2.zhuishushenqi.com/chapter/{url}")
-    Single<ChapterInfoPackage> getChapterInfoPackage(@Path("url") String url);
+    @GET("http://192.168.2.211:8888/novel/ContentByUrl")
+    Single<ChapterInfoPackage> getChapterInfoPackage(@Query("url") String url);
 
     /*******************************Community *******************************************************/
     /**

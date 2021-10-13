@@ -25,7 +25,9 @@ android {
     }
     buildToolsVersion '26.0.2'
 }
-
+android {
+    ndkVersion "22.1.7171670"
+}
 greendao{
     schemaVersion 3
     daoPackage 'com.example.newbiechen.ireader.model.gen'

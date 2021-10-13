@@ -627,7 +627,7 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
                                 mPageLoader.refreshChapterList();
                                 // 如果是网络小说并被标记更新的，则从网络下载目录
                                 if (mCollBook.isUpdate() && !mCollBook.isLocal()) {
-                                    mPresenter.loadCategory(mBookId);
+                                    mPresenter.loadCategory(mBookId, mCollBook.getTitle(), mCollBook.getAuthor());
                                 }
                                 LogUtils.e(throwable);
                             }
@@ -635,7 +635,7 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
             addDisposable(disposable);
         } else {
             // 从网络中获取目录
-            mPresenter.loadCategory(mBookId);
+            mPresenter.loadCategory(mBookId, mCollBook.getTitle(), mCollBook.getAuthor());
         }
     }
 

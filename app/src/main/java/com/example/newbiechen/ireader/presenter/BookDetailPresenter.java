@@ -38,7 +38,7 @@ public class BookDetailPresenter extends RxPresenter<BookDetailContract.View>
     @Override
     public void addToBookShelf(CollBookBean collBookBean)  {
         Disposable disposable = RemoteRepository.getInstance()
-                .getBookChapters(collBookBean.get_id())
+                .getBookChapters(collBookBean.get_id(), collBookBean.getTitle(), collBookBean.getAuthor())
                 .subscribeOn(Schedulers.io())
                 .doOnSubscribe(
                         (d) -> mView.waitToBookShelf() //等待加载

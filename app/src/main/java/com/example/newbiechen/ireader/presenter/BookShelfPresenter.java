@@ -155,7 +155,7 @@ public class BookShelfPresenter extends RxPresenter<BookShelfContract.View>
         List<Single<List<BookChapterBean>>> observables = new ArrayList<>(collBookBeans.size());
         for (CollBookBean bean : collBookBeans){
             observables.add(
-                    RemoteRepository.getInstance().getBookChapters(bean.get_id())
+                    RemoteRepository.getInstance().getBookChapters(bean.get_id(), bean.getTitle(), bean.getAuthor())
             );
         }
         Iterator<CollBookBean> it = collBookBeans.iterator();
