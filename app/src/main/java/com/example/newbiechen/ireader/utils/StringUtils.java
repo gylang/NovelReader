@@ -186,4 +186,8 @@ public class StringUtils {
 
         return (convertType != 0)?ChineseConverter.convert(input, currentConversionType, context):input;
     }
+
+    public static boolean isEmpty(String manufacturer) {
+        return null == manufacturer || manufacturer.isEmpty();
+    }
 }

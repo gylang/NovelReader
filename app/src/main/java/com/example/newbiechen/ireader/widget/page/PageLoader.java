@@ -11,15 +11,12 @@ import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
 import android.text.TextPaint;
 
+import android.util.Log;
 import com.example.newbiechen.ireader.model.bean.BookRecordBean;
 import com.example.newbiechen.ireader.model.bean.CollBookBean;
 import com.example.newbiechen.ireader.model.local.BookRepository;
 import com.example.newbiechen.ireader.model.local.ReadSettingManager;
-import com.example.newbiechen.ireader.utils.Constant;
-import com.example.newbiechen.ireader.utils.IOUtils;
-import com.example.newbiechen.ireader.utils.RxUtils;
-import com.example.newbiechen.ireader.utils.ScreenUtils;
-import com.example.newbiechen.ireader.utils.StringUtils;
+import com.example.newbiechen.ireader.utils.*;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -53,7 +50,7 @@ public abstract class PageLoader {
     private static final int DEFAULT_MARGIN_HEIGHT = 28;
     private static final int DEFAULT_MARGIN_WIDTH = 15;
     private static final int DEFAULT_TIP_SIZE = 12;
-    private static final int EXTRA_TITLE_SIZE = 4;
+    private static final int EXTRA_TITLE_SIZE = 8;
 
     // 当前章节列表
     protected List<TxtChapter> mChapterList;
@@ -841,8 +838,14 @@ public abstract class PageLoader {
 
             //将提示语句放到正中间
             Paint.FontMetrics fontMetrics = mTextPaint.getFontMetrics();
-            float textHeight = fontMetrics.top - fontMetrics.bottom;
+            float textHeight = (fontMetrics.top - 20) - (fontMetrics.bottom + 20);
+            Log.d(TAG, "drawContent: fontMetrics.top: " + fontMetrics.top);
+            Log.d(TAG, "drawContent: fontMetrics.bottom: " + fontMetrics.bottom);
+            Log.d(TAG, "drawContent: textHeight: " + textHeight);
+
+            Log.d(TAG, "drawContent: textHeight: " + textHeight);
             float textWidth = mTextPaint.measureText(tip);
+            Log.d(TAG, "drawContent: textWidth: " + textWidth);
             float pivotX = (mDisplayWidth - textWidth) / 2;
             float pivotY = (mDisplayHeight - textHeight) / 2;
             canvas.drawText(tip, pivotX, pivotY, mTextPaint);

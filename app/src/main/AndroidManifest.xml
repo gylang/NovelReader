@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.example.newbiechen.ireader">
-    
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,6 +13,7 @@
         <activity android:name=".ui.activity.SplashActivity"
             android:theme="@style/SplashTheme">
         </activity>
+
         <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -37,15 +38,35 @@
         <activity android:name=".ui.activity.BookDetailActivity"/>
         <activity android:name=".ui.activity.DownloadActivity"/>
         <activity android:name=".ui.activity.ReadActivity">
+
+            <!-- Android O刘海适配 start -->
+            <!-- 华为 -->
+            <meta-data
+                    android:name="android.notch_support"
+                    android:value="true" />
+            <!-- 华为 -->
+
+            <!-- 小米 -->
+            <meta-data
+                    android:name="notch.config"
+                    android:value="portrait|landscape" />
+            <!-- 小米 -->
+            <!-- Android O刘海适配 end -->
+
+            <!-- Android全面屏全屏 start -->
+            <meta-data
+                    android:name="android.max_aspect"
+                    android:value="2.2" />
+            <!-- Android全面屏全屏 end -->
         </activity>
         <activity android:name=".ui.activity.FileSystemActivity"/>
         <activity android:name=".ui.activity.CommunityActivity" />
         <activity android:name=".ui.activity.MoreSettingActivity" />
-    
+
         <service android:name=".service.DownloadService" />
     </application>
-    
-    
+
+
     <!--********************************permission************************************-->
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />

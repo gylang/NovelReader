@@ -59,7 +59,7 @@ public interface BookApi {
      * @param author
      * @return
      */
-    @GET("http://192.168.2.211:8888/novel/chapterByAuthorAndName")
+    @GET("http://novel.gylang.top:8902/novel/chapterByAuthorAndName")
     Single<BookChapterPackage> getBookChapterPackage(@Query("bookId") String bookId, @Query("view") String view,@Query("name")String title,@Query("author")String author);
 
     /**
@@ -68,7 +68,7 @@ public interface BookApi {
      * @param url
      * @return
      */
-    @GET("http://192.168.2.211:8888/novel/ContentByUrl")
+    @GET("http://novel.gylang.top:8902/novel/ContentByUrl")
     Single<ChapterInfoPackage> getChapterInfoPackage(@Query("url") String url);
 
     /*******************************Community *******************************************************/
