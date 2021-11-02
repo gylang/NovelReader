@@ -33,10 +33,6 @@ public class BookSourceFragment extends BaseMVPFragment<BookListContract.Present
 
     }
 
-    @Override
-    public void finishLoading(List<CrawlerBookInfo> beans) {
-
-    }
 
     @Override
     public void showLoadError() {

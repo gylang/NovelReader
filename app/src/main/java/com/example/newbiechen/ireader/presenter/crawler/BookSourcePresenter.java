@@ -1,8 +1,19 @@
 package com.example.newbiechen.ireader.presenter.crawler;
 
-import com.example.newbiechen.ireader.model.flag.BookListType;
+import android.support.annotation.NonNull;
+import cn.hutool.core.lang.Singleton;
 import com.example.newbiechen.ireader.presenter.crawler.contract.BookSourceContract;
 import com.example.newbiechen.ireader.ui.base.RxPresenter;
+import com.example.newbiechen.ireader.utils.RxUtils;
+import com.gylang.novel.domain.bean.crawler.CrawlerBookInfo;
+import com.gylang.novel.handler.SimpleNovelHandlerManager;
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Flowable;
+import io.reactivex.FlowableEmitter;
+import io.reactivex.FlowableOnSubscribe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+
+import java.util.List;
 
 /**
  * @author gylang
@@ -10,15 +21,21 @@ import com.example.newbiechen.ireader.ui.base.RxPresenter;
  */
 public class BookSourcePresenter extends RxPresenter<BookSourceContract.View> implements BookSourceContract.Presenter {
 
-    @Override
-    public void refreshBookList(BookListType type, String tag, int start, int limited) {
-
-    }
 
     @Override
-    public void loadBookList(BookListType type, String tag, int start, int limited) {
+    public void loadBookList(String name, String author) {
 
+        // 请求第三方爬取数据接口
+
+        Flowable.create(new FlowableOnSubscribe<List<CrawlerBookInfo>>() {
+            @Override
+            public void subscribe(@NonNull FlowableEmitter<List<CrawlerBookInfo>> emitter) throws Exception {
+
+                SimpleNovelHandlerManager simpleNovelHandlerManager = Singleton.get(SimpleNovelHandlerManager.class);
+                List<CrawlerBookInfo> crawlerBookInfoList = simpleNovelHandlerManager.allNodeBookSearchByNameAndAuthor(name, author);
+                emitter.onNext(crawlerBookInfoList);
+            }
+        }, BackpressureStrategy.BUFFER)
+                .compose(upstream -> upstream.observeOn(AndroidSchedulers.mainThread()));
     }
-
-
 }

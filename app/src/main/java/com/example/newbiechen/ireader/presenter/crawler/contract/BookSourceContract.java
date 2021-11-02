@@ -1,8 +1,5 @@
 package com.example.newbiechen.ireader.presenter.crawler.contract;
 
-import com.example.newbiechen.ireader.model.bean.BookListBean;
-import com.example.newbiechen.ireader.model.flag.BookListType;
-import com.example.newbiechen.ireader.presenter.contract.BookListContract;
 import com.example.newbiechen.ireader.ui.base.BaseContract;
 import com.gylang.novel.domain.bean.crawler.CrawlerBookInfo;
 
@@ -14,14 +11,22 @@ import java.util.List;
  */
 public interface BookSourceContract {
 
-    interface View extends BaseContract.BaseView{
+    interface View extends BaseContract.BaseView {
+        /**
+         * 加载各个节点的数据
+         *
+         * @param beans
+         */
         void finishRefresh(List<CrawlerBookInfo> beans);
-        void finishLoading(List<CrawlerBookInfo> beans);
+
+        /**
+         * 展示错误新
+         */
         void showLoadError();
     }
 
-    interface Presenter extends BaseContract.BasePresenter<BookSourceContract.View>{
-        void refreshBookList(BookListType type, String tag, int start, int limited);
-        void loadBookList(BookListType type, String tag,int start, int limited);
+    interface Presenter extends BaseContract.BasePresenter<BookSourceContract.View> {
+
+        void loadBookList(String name, String author);
     }
 }
