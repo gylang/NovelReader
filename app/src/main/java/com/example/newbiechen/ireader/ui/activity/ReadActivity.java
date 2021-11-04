@@ -1,5 +1,9 @@
 package com.example.newbiechen.ireader.ui.activity;
 
+import static android.support.v4.view.ViewCompat.LAYER_TYPE_SOFTWARE;
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
@@ -58,10 +62,6 @@ import java.util.List;
 import butterknife.BindView;
 import io.reactivex.disposables.Disposable;
 
-import static android.support.v4.view.ViewCompat.LAYER_TYPE_SOFTWARE;
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
-
 /**
  * Created by newbiechen on 17-5-16.
  */
@@ -72,6 +72,8 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
     public static final int REQUEST_MORE_SETTING = 1;
     public static final String EXTRA_COLL_BOOK = "extra_coll_book";
     public static final String EXTRA_IS_COLLECTED = "extra_is_collected";
+    public static final String EXTRA_DOMAIN = "extra_domain";
+    public static final String EXTRA_CHAPTER_URL = "extra_chapter_url";
 
     // 注册 Brightness 的 uri
     private final Uri BRIGHTNESS_MODE_URI =
@@ -129,6 +131,8 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
     private Animation mBottomOutAnim;
     private CategoryAdapter mCategoryAdapter;
     private CollBookBean mCollBook;
+    private String domain;
+    private String chapterUrl;
     //控制屏幕常亮
     private PowerManager.WakeLock mWakeLock;
     private Handler mHandler = new Handler() {
@@ -400,8 +404,7 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
                         if (mPageLoader.getPageStatus() == PageLoader.STATUS_LOADING
                                 || mPageLoader.getPageStatus() == PageLoader.STATUS_ERROR) {
                             mSbChapterProgress.setEnabled(false);
-                        }
-                        else {
+                        } else {
                             mSbChapterProgress.setEnabled(true);
                         }
                     }
@@ -627,7 +630,7 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
                                 mPageLoader.refreshChapterList();
                                 // 如果是网络小说并被标记更新的，则从网络下载目录
                                 if (mCollBook.isUpdate() && !mCollBook.isLocal()) {
-                                    mPresenter.loadCategory(mBookId, mCollBook.getTitle(), mCollBook.getAuthor());
+                                    mPresenter.loadCategory(mBookId, mCollBook.getTitle(), mCollBook.getAuthor(), mCollBook.getChapterUrl());
                                 }
                                 LogUtils.e(throwable);
                             }
@@ -635,7 +638,7 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
             addDisposable(disposable);
         } else {
             // 从网络中获取目录
-            mPresenter.loadCategory(mBookId, mCollBook.getTitle(), mCollBook.getAuthor());
+            mPresenter.loadCategory(mBookId, mCollBook.getTitle(), mCollBook.getAuthor(), mCollBook.getChapterUrl());
         }
     }
 

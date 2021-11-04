@@ -62,6 +62,11 @@ public class BookChapterBean implements Serializable{
     public BookChapterBean() {
     }
 
+    public BookChapterBean(String title, String link) {
+        this.title = title;
+        this.link = link;
+    }
+
     public String getTitle() {
         return title;
     }

@@ -32,47 +32,49 @@
                     android:layout_marginLeft="10dp">
 
                 <TextView
-                        style="@style/NB.Theme.TextAppearance.Book.Name"
-                        android:id="@+id/book_source_tv_title"
-                        android:layout_marginBottom="10dp"
-                        tools:text="此单在手，书荒不再有！"/>
+                    android:id="@+id/book_source_tv_title"
+                    style="@style/NB.Theme.TextAppearance.Book.Name"
+                    android:layout_marginBottom="10dp"
+                    tools:text="书名" />
 
                 <TextView
-                        android:id="@+id/book_source_tv_author"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/book_source_tv_title"
-                        android:layout_marginBottom="10dp"
-                        android:ellipsize="end"
-                        android:singleLine="true"
-                        android:textColor="@color/nb.text.common_h2"
-                        android:textSize="13sp"
-                        tools:text="选择"/>
+                    android:id="@+id/book_source_tv_author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/book_source_tv_title"
+                    android:layout_marginBottom="10dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textColor="@color/nb.text.common_h2"
+                    android:textSize="13sp"
+                    tools:text="作者" />
 
 
                 <TextView
-                        android:id="@+id/book_source_node"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/book_source_tv_author"
-                        android:layout_marginRight="5dp"
-                        android:ellipsize="end"
-                        android:singleLine="true"
-                        android:textColor="@color/nb.text.common_h3"
-                        android:textSize="13sp"
-                        tools:text="@string/nb.book.message"/>
+                    android:id="@+id/book_source_tv_node"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/book_source_tv_author"
+                    android:layout_marginRight="5dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="节点"
+                    android:textColor="@color/nb.read.bar.translucent"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    tools:text="节点" />
 
                 <TextView
-                        android:id="@+id/last_chapter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/book_source_tv_author"
-                        android:layout_toRightOf="@id/book_source_node"
-                        android:ellipsize="end"
-                        android:singleLine="true"
-                        android:textColor="@color/nb.text.common_h3"
-                        android:textSize="13sp"
-                        tools:text="@string/nb.book.word"/>
+                    android:id="@+id/book_source_tv_last_chapter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/book_source_tv_author"
+                    android:layout_toRightOf="@id/book_source_tv_node"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textColor="@color/nb.text.common_h3"
+                    android:textSize="13sp"
+                    tools:text="最新章节" />
 
             </RelativeLayout>
         </RelativeLayout>

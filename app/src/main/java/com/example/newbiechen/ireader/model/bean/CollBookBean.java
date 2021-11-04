@@ -62,6 +62,8 @@ public class CollBookBean implements Parcelable{
     private String lastRead;
     private int chaptersCount;
     private String lastChapter;
+
+    private transient String chapterUrl;
     //是否更新或未阅读
     private boolean isUpdate = true;
     //是否是本地文件
@@ -97,6 +99,14 @@ public class CollBookBean implements Parcelable{
     }
 
     public CollBookBean() {
+    }
+
+    public String getChapterUrl() {
+        return chapterUrl;
+    }
+
+    public void setChapterUrl(String chapterUrl) {
+        this.chapterUrl = chapterUrl;
     }
 
     public String get_id() {

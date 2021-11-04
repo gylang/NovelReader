@@ -184,9 +184,12 @@ public class BookDetailActivity extends BaseMVPActivity<BookDetailContract.Prese
         );
 
         mTvRead.setOnClickListener(
-                (v) -> startActivityForResult(new Intent(this, ReadActivity.class)
-                        .putExtra(ReadActivity.EXTRA_IS_COLLECTED, isCollected)
-                        .putExtra(ReadActivity.EXTRA_COLL_BOOK, mCollBookBean), REQUEST_READ)
+
+                // 调整 调整到选择小说源列表页
+                (v) -> BookSourceActivity.startActivity(this,  mCollBookBean, isCollected, REQUEST_READ)
+//                (v) -> startActivityForResult(new Intent(this, ReadActivity.class)
+//                        .putExtra(ReadActivity.EXTRA_IS_COLLECTED, isCollected)
+//                        .putExtra(ReadActivity.EXTRA_COLL_BOOK, mCollBookBean), REQUEST_READ)
         );
 
 
